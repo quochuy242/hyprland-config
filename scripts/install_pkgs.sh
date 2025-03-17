@@ -5,15 +5,18 @@ set -e  # Exit on error
 GREEN='\033[0;32m'
 BLUE='\033[0;34m'
 NC='\033[0m' # No Color
+YELLOW='\033[0;33m'
 
 # Function for printing section headers
 print_section() {
-    echo -e "\n${BLUE}===${NC} ${GREEN}$1 ${BLUE}===\n"
+    echo -e "\n${BLUE}===${NC} ${GREEN}$1 ${BLUE}=== ${NC}\n"
 }
 print_info() {
-    echo -e "${NC} ${BLUE}$1\n"
+    echo -e "${NC} ${YELLOW}$1${NC}\n"
 }
-
+print_subsection() {
+    echo -e "\n ${GREEN}$1 ${NC}\n"
+}
 
 # Function to check if a package is installed
 is_installed() {
@@ -30,6 +33,16 @@ install_package() {
     fi
 }
 
+# Function to install a package from AUR
+install_aur_package() {
+    if ! is_installed "$1"; then
+        print_info "Installing $1 from AUR"
+        paru -S --needed --noconfirm "$1"
+    else
+        print_info "$1 is already installed"
+    fi
+}
+
 # Go Home
 cd ~
 
@@ -40,6 +53,7 @@ print_section "Updating system"
 sudo pacman -Syu --noconfirm
 
 # Check if paru is already installed
+print_section "Installing paru AUR helper"
 if ! command -v paru &> /dev/null; then
     print_section "Installing paru AUR helper"
     git clone https://aur.archlinux.org/paru.git $HOME/paru
@@ -47,7 +61,7 @@ if ! command -v paru &> /dev/null; then
     makepkg -si --noconfirm
     cd ~
 else
-    print_section "paru is already installed"
+    print_info "paru is already installed"
 fi
 
 # Install dependencies
@@ -65,16 +79,27 @@ for font in "${fonts[@]}"; do
     install_package "$font"
 done
 
-print_info "Downloading wallpapers"
+print_subsection "Downloading wallpapers"
 mkdir -p $HOME/wallpapers
-print_info "Install gdown for downloading from google drive"
-pipx install gdown
-gdown https://drive.google.com/file/d/1J-voIphjsK-dmrqVHWtIORIAL6TtNyGD/view?usp=drive_link -O $HOME/wallpapers/wallpapers.zip --fuzzy
+if ! command -v gdown &> /dev/null; then
+    print_info "Install gdown for downloading from google drive"
+    pipx install gdown
+else   
+    print_info "gdown is already installed"
+fi
+gdown --fuzzy https://drive.google.com/file/d/1J-voIphjsK-dmrqVHWtIORIAL6TtNyGD/view?usp=drive_link -O $HOME/wallpapers/wallpapers.zip 
 unzip -o -q $HOME/wallpapers/wallpapers.zip -d $HOME/wallpapers
-rm $HOME/wallpapers/wallpapers.zip
+rm -f $HOME/wallpapers/wallpapers.zip
 
 # Install packages
-pkgs=("wlogout" "waybar" "rofi-wayland" "swww" "cliphist" "hyprpicker" "hyprlock" "grimblast" "hypridle" "nwg-look" "qt5ct" "qt6ct" "kvantum")
+print_section "Installing packages"
+pkgs=("waybar" "rofi-wayland" "swww" "cliphist" "hyprpicker" "hyprlock" "hypridle" "nwg-look" "qt5ct" "qt6ct" "kvantum")
 for pkg in "${pkgs[@]}"; do
     install_package "$pkg"
+done
+
+# Install other packages from AUR 
+aur_pkgs=("wlogout" "grimblast")
+for pkg in "${aur_pkgs[@]}"; do
+    install_aur_package "$pkg"
 done
