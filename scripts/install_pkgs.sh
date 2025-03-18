@@ -73,11 +73,14 @@ done
 
 # Install assets
 print_section "Installing assets"
-print_info "Installing fonts"
+print_subsection "Installing fonts"
 fonts=("ttf-cascadia-code-nerd" "ttf-cascadia-mono-nerd" "ttf-fira-code" "ttf-fira-mono" "ttf-fira-sans" "ttf-firacode-nerd" "ttf-iosevka-nerd" "ttf-iosevkaterm-nerd" "ttf-jetbrains-mono-nerd" "ttf-jetbrains-mono" "ttf-nerd-fonts-symbols" "ttf-nerd-fonts-symbols" "ttf-nerd-fonts-symbols-mono")
 for font in "${fonts[@]}"; do
     install_package "$font"
 done
+
+print_subsection "Installing icon theme"
+install_package "papirus-icon-theme"
 
 print_subsection "Downloading wallpapers"
 mkdir -p $HOME/wallpapers
@@ -99,7 +102,7 @@ for pkg in "${pkgs[@]}"; do
 done
 
 # Install other packages from AUR 
-aur_pkgs=("wlogout" "grimblast")
+aur_pkgs=("wlogout" "grimblast" "cava")
 for pkg in "${aur_pkgs[@]}"; do
     install_aur_package "$pkg"
 done

@@ -34,7 +34,7 @@ button:focus {
 
 #lock {
   background-image: image(
-    url("/home/quochuy242/.config/assets/wlogout/assets/lock.png"),
+    url("/home/quochuy242/.config/wlogout/assets/lock.png"),
     url("/usr/local/share/wlogout/icons/lock.png"),
     url("/usr/share/wlogout/icons/lock.png")
   );
@@ -42,7 +42,7 @@ button:focus {
 
 #logout {
   background-image: image(
-    url("/home/quochuy242/.config/assets/wlogout/assets/logout.png"),
+    url("/home/quochuy242/.config/wlogout/assets/logout.png"),
     url("/usr/local/share/wlogout/icons/logout.png"),
     url("/usr/share/wlogout/icons/logout.png")
   );
@@ -50,7 +50,7 @@ button:focus {
 
 #suspend {
   background-image: image(
-    url("/home/quochuy242/.config/assets/wlogout/assets/sleep.png"),
+    url("/home/quochuy242/.config/wlogout/assets/sleep.png"),
     url("/usr/local/share/wlogout/icons/suspend.png"),
     url("/usr/share/wlogout/icons/suspend.png")
   );
@@ -58,7 +58,7 @@ button:focus {
 
 #shutdown {
   background-image: image(
-    url("/home/quochuy242/.config/assets/wlogout/assets/power.png"),
+    url("/home/quochuy242/.config/wlogout/assets/power.png"),
     url("/usr/local/share/wlogout/icons/shutdown.png"),
     url("/usr/share/wlogout/icons/shutdown.png")
   );
@@ -66,7 +66,7 @@ button:focus {
 
 #reboot {
   background-image: image(
-    url("/home/quochuy242/.config/assets/wlogout/assets/restart.png"),
+    url("/home/quochuy242/.config/wlogout/assets/restart.png"),
     url("/usr/local/share/wlogout/icons/reboot.png"),
     url("/usr/share/wlogout/icons/reboot.png")
   );
@@ -74,7 +74,7 @@ button:focus {
 
 #exit {
   background-image: image(
-    url("/home/quochuy242/.config/assets/wlogout/assets/exit.png"),
+    url("/home/quochuy242/.config/wlogout/assets/exit.png"),
     url("/usr/local/share/wlogout/icons/reboot.png"),
     url("/usr/share/wlogout/icons/reboot.png")
   );
