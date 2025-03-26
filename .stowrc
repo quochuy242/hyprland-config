@@ -3,4 +3,5 @@
 --ignore=scripts
 --ignore=.git
 --ignore=README.md
+--ignore=setup.sh
 --ignore=LICENSE

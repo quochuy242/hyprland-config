@@ -5,3 +5,6 @@ chmod +x ./scripts/*.sh
 
 # Install dotfiles
 ./scripts/dotfiles.sh
+
+# Apply the config
+stow . 
