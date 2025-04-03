@@ -64,18 +64,19 @@ if [[ "$setup_answer" == "y" || "$setup_answer" == "yes" ]]; then
             scripts=("$SCRIPTS_DIR"/*.sh)
             for i in "${!scripts[@]}"; do
                 script_name=$(basename "${scripts[$i]}")
-                echo "[$((i+1)))]: $script_name"
+                echo "[$((i+1))]: $script_name"
             done
             
             # Prompt user to choose script
             read -p "Enter the number of the script to run: " choice
             
             # Validate choice
-            if [[ "$choice" =~ ^[0-9]+$ ]] && (( choice >= 1 && choice <= ${#script_files[@]} )); then
-                selected_script="${script_files[$((choice-1))]}"
+            if [[ "$choice" =~ ^[0-9]+$ ]] && (( choice >= 1 && choice <= ${#scripts[@]} )); then
+                selected_script="${scripts[$((choice-1))]}"
                 print_info "Running ${GREEN}$selected_script${NC}..."
                 bash "$selected_script"
                 print_info "Script completed successfully."
+		break
             else
                 print_error "Invalid choice. Please enter a valid number."
                 exit 1

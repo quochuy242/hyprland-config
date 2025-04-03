@@ -66,15 +66,22 @@ fi
 
 # Install dependencies
 print_section "Installing dependencies"
-dependencies=("git" "base-devel" "hyprland" "pipewire" "python3" "python-pipx" "kitty" "stow" "unzip" "xdg-desktop-portal-hyprland" "polkit-kde-agent" "qt5-wayland" "qt6-wayland")
+dependencies=("git" "base-devel" "hyprland" "pipewire" "ffmpeg" "playerctl" "kitty" "stow" "unzip" "xdg-desktop-portal-hyprland" "polkit-kde-agent" "qt5-wayland" "qt6-wayland" "brightnessctl" "cliphist" "dunst")
 for dep in "${dependencies[@]}"; do
   install_package "$dep"
+done
+
+# Install coding stuff
+print_section "Installing programming language"
+programs=("rustup" "python3" "python-pipx" "r" "gcc" "go" "make" "just" "uv")
+for program in "${programs[@]}"; do
+  install_package "$program"
 done
 
 # Install assets
 print_section "Installing assets"
 print_subsection "Installing fonts"
-fonts=("ttf-cascadia-code-nerd" "ttf-cascadia-mono-nerd" "ttf-fira-code" "ttf-fira-mono" "ttf-fira-sans" "ttf-firacode-nerd" "ttf-iosevka-nerd" "ttf-iosevkaterm-nerd" "ttf-jetbrains-mono-nerd" "ttf-jetbrains-mono" "ttf-nerd-fonts-symbols" "ttf-nerd-fonts-symbols" "ttf-nerd-fonts-symbols-mono")
+fonts=("ttf-cascadia-code-nerd" "ttf-cascadia-mono-nerd" "ttf-fira-code" "ttf-fira-mono" "ttf-fira-sans" "ttf-firacode-nerd" "ttf-iosevka-nerd" "ttf-iosevkaterm-nerd" "ttf-jetbrains-mono-nerd" "ttf-jetbrains-mono" "ttf-nerd-fonts-symbols" "ttf-nerd-fonts-symbols" "ttf-nerd-fonts-symbols-mono" "adwaita-fonts")
 for font in "${fonts[@]}"; do
   install_package "$font"
 done
@@ -86,27 +93,52 @@ print_subsection "Installing catppuccin-gtk-theme-mocha"
 install_aur_package "catppuccin-gtk-theme-mocha"
 
 print_subsection "Downloading wallpapers"
-mkdir -p $HOME/wallpapers
-if ! command -v gdown &>/dev/null; then
-  print_info "Install gdown for downloading from google drive"
-  pipx install gdown
+wallpaper_dir="$HOME/wallpapers/"
+
+read -p "Do you want to download my list wallpapers (CAUTION: >= 1.1GB) (y/n): " wallpaper_choice
+wallpaper_choice=${wallpaper_choice,,} # Convert to lowercase
+
+if [[ "$wallpaper_choice" == "y" || "$wallpaper_choice" == "yes" ]]; then
+  if [ -d "$wallpaper_dir" ]; then
+    print_info "The $wallpaper_dir exists"
+    read -p "Do you want to remove your wallpaper (y/n): " remove_wallpaper_choice
+    remove_wallpaper_choice=${remove_wallpaper_choice,,}
+    if [[ "$remove_wallpaper_choice" == "y" || "$remove_wallpaper_choice" == "yes" ]]; then
+      rm -rf "$wallpaper_dir"
+    elif [[ "$remove_wallpaper_choice" == "n" || "$remove_wallpaper_choice" == "no" ]]; then
+      wallpaper_dir="$HOME/quochuy242_wallpapers"
+    else
+      print_info "Invalid choice, do nothing"
+    fi
+  fi
+
+  mkdir -p "$wallpaper_dir"
+  print_info "Clone quochuy242's wallpaper collections"
+  git clone https://github.com/quochuy242/wallpapers.git "$wallpaper_dir"
 else
-  print_info "gdown is already installed"
+  print_info "Skip installing wallpapers"
 fi
-gdown --fuzzy https://drive.google.com/file/d/1J-voIphjsK-dmrqVHWtIORIAL6TtNyGD/view?usp=drive_link -O $HOME/wallpapers/wallpapers.zip
-unzip -o -q $HOME/wallpapers/wallpapers.zip -d $HOME/wallpapers
-rm -f $HOME/wallpapers/wallpapers.zip
 
 # Install packages
 print_section "Installing packages"
-pkgs=("waybar" "rofi-wayland" "swww" "cliphist" "hyprpicker" "hyprlock" "hypridle" "nwg-look" "qt5ct" "qt6ct" "kvantum" "obsidian")
+pkgs=("waybar" "rofi-wayland" "swww" "hyprpicker" "hyprlock" "hypridle" "nwg-look" "qt5ct" "qt6ct" "kvantum")
 for pkg in "${pkgs[@]}"; do
   install_package "$pkg"
 done
 
 # Install other packages from AUR
-aur_pkgs=("wlogout" "grimblast" "cava")
+aur_pkgs=("grimblast" "cava" "bemoji")
 for pkg in "${aur_pkgs[@]}"; do
   install_aur_package "$pkg"
 done
 
+# Install desktop app
+print_section "Installing some desktop applications"
+pacman_apps=("obs-studio" "obsidian" "pavucontrol" "mpv" "imv" "telegram-desktop")
+aur_apps=("visual-studio-code-bin" "brave-bin")
+for app in "${pacman_apps[@]}"; do
+  install_package "$app"
+done
+for app in "${aur_apps[@]}"; do
+  install_aur_package "$app"
+done
