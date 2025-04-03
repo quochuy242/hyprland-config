@@ -142,3 +142,16 @@ done
 for app in "${aur_apps[@]}"; do
   install_aur_package "$app"
 done
+
+# Setup Vietnamese typing
+read -p "Do you want to setup Vietnamese typing by using fcitx5-unikey (y/n): " vietnam_choice
+vietnam_choice=${vietnam_choice,,}
+
+if [[ "$vietnam_choice" == "y" || "$vietnam_choice" == "yes" ]]; then
+  install_package "fcitx5 fcitx5-unikey fcitx5-qt fcitx5-gtk fcitx5-configtool" # For hyprland
+  install_aur_package "ibus-bamboo"                                             # For GNOME
+elif [[ "$vietnam_choice" == "n" || "$vietnam_choice" == "no" ]]; then
+  print_info "Skip setup Vietnamese typing"
+else
+  print_info "Invalid choice"
+fi
