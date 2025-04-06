@@ -134,8 +134,8 @@ done
 
 # Install desktop app
 print_section "Installing some desktop applications"
-pacman_apps=("obs-studio" "obsidian" "pavucontrol" "mpv" "imv" "telegram-desktop")
-aur_apps=("visual-studio-code-bin" "brave-bin")
+pacman_apps=("obs-studio" "code" "obsidian" "pavucontrol" "mpv" "imv" "telegram-desktop")
+aur_apps=("brave-bin" "zen-browser-bin" "zoom")
 for app in "${pacman_apps[@]}"; do
   install_package "$app"
 done
