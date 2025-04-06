@@ -1,10 +1,14 @@
 chmod +x ./scripts/*.sh
 
 # Install packages
-./scripts/install_pkgs.sh
+bash ./scripts/install_pkgs.sh
+
+# Setup coding
+bash ./scripts/setup_coding.sh
 
 # Install dotfiles
-./scripts/dotfiles.sh
+bash ./scripts/dotfiles.sh
 
 # Apply the config
-stow . 
+cd $HOME/hyprland-ricing/
+stow .
