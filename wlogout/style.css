@@ -1,81 +1,89 @@
+/*   _ _ _ __    _____ _____ _____ _____ _____
+    | | | |  |  |     |   __|     |  |  |_   _|
+    | | | |  |__|  |  |  |  |  |  |  |  | | |
+    |_____|_____|_____|_____|_____|_____| |_|   STYLE
+
+    by Bina
+*/
+
+/* general */
 * {
-  font-family: JetBrains Mono, Symbols Nerd Font;
-  font-size: 24px;
-  transition-property: background-color;
-  transition-duration: 0.7s;
+  background-image: none;
+  transition: 20ms;
+  box-shadow: none;
 }
 
 window {
-  background-color: transparent;
-  /* border-radius: 10px; */
+  background-color: rgba(12, 12, 12, 0.9);
 }
 
 button {
-  background-color: #11111b;
-  color: #cdd6f4; 
-  border-style: solid;
-  /* border-width: 2px; */
-  border-radius: 50px;
-  background-repeat: no-repeat;
+  color: #ffffff;
+  background-color: #585b70;
   background-position: center;
-  background-size: 15%;
-  margin: 15px;
+  background-repeat: no-repeat;
+  background-size: 20%;
+  border-radius: 10px;
+  outline-style: none;
 }
 
-button:active,
-button:hover,
-button:focus {
-  background-color: #cdd6f4;
-  /* text-decoration-color: black; */
-  color: black;
-}
-
-
-
+/* options */
 #lock {
-  background-image: image(
-    url("/home/quochuy242/.config/wlogout/assets/lock.png"),
-    url("/usr/local/share/wlogout/icons/lock.png"),
-    url("/usr/share/wlogout/icons/lock.png")
-  );
-}
-
-#logout {
-  background-image: image(
-    url("/home/quochuy242/.config/wlogout/assets/logout.png"),
-    url("/usr/local/share/wlogout/icons/logout.png"),
-    url("/usr/share/wlogout/icons/logout.png")
-  );
-}
-
-#suspend {
-  background-image: image(
-    url("/home/quochuy242/.config/wlogout/assets/sleep.png"),
-    url("/usr/local/share/wlogout/icons/suspend.png"),
-    url("/usr/share/wlogout/icons/suspend.png")
-  );
-}
-
-#shutdown {
-  background-image: image(
-    url("/home/quochuy242/.config/wlogout/assets/power.png"),
-    url("/usr/local/share/wlogout/icons/shutdown.png"),
-    url("/usr/share/wlogout/icons/shutdown.png")
-  );
+  background-image: image(url("icons/lock.png"));
+  border-radius: 5px 0px 0px 0px;
+  margin: 100px 0px 0px 550px;
 }
 
 #reboot {
-  background-image: image(
-    url("/home/quochuy242/.config/wlogout/assets/restart.png"),
-    url("/usr/local/share/wlogout/icons/reboot.png"),
-    url("/usr/share/wlogout/icons/reboot.png")
-  );
+  background-image: image(url("icons/reboot.png"));
+  border-radius: 0px 0px 0px 5px;
+  margin: 0px 0px 100px 550px;
 }
 
-#exit {
-  background-image: image(
-    url("/home/quochuy242/.config/wlogout/assets/exit.png"),
-    url("/usr/local/share/wlogout/icons/reboot.png"),
-    url("/usr/share/wlogout/icons/reboot.png")
-  );
+#logout {
+  background-image: image(url("icons/logout.png"));
+  border-radius: 0px 5px 0px 0px;
+  margin: 100px 550px 0px 0px;
+}
+
+#shutdown {
+  background-image: image(url("icons/shutdown.png"));
+  border-radius: 0px 0px 5px 0px;
+  margin: 0px 550px 100px 0px;
+}
+
+/* options on hover */
+button:focus,
+button:active,
+button:hover {
+  background-size: 25%;
+  background-color: #89b4fa;
+}
+
+button:focus#lock,
+button:active#lock,
+button:hover#lock {
+  border-radius: 10px 10px 0px 10px;
+  margin: 80px 0px 0px 530px;
+}
+
+button:focus#reboot,
+button:active#reboot,
+button:hover#reboot {
+  border-radius: 10px 0px 10px 10px;
+  margin: 0px 0px 80px 530px;
+}
+
+button:focus#logout,
+button:active#logout,
+button:hover#logout {
+  border-radius: 10px 10px 10px 0px;
+  margin: 80px 530px 0px 0px;
+}
+
+button:focus#shutdown,
+button:active#shutdown,
+button:hover#shutdown {
+  border-radius: 0px 10px 10px 10px;
+  margin: 0px 530px 80px 0px;
 }
