@@ -8,11 +8,11 @@
   "height": 0,
   "modules-left": [
       "clock",
-      "hyprland/workspaces"
+      "hyprland/workspaces",
+      "tray"
   ],
   "modules-center": ["hyprland/window"],
   "modules-right": [
-      "tray",
       "memory",
       "cpu",
       "network",

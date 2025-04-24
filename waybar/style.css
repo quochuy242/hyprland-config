@@ -1,7 +1,7 @@
 * {
   border: none;
   border-radius: 0;
-  font-family: Iosevka Nerd Font, monospace;
+  font-family: Iosevka Nerd Font Mono, monospace;
   font-weight: bold;
   font-size: 15px;
   min-height: 0;
@@ -25,19 +25,19 @@ window#waybar {
 #workspaces button.focused {
   color: #a6adc8;
   background: #eba0ac;
-  border-radius: 10px;
+  border-radius: 0px;
 }
 
 #workspaces button.urgent {
   color: #11111b;
   background: #a6e3a1;
-  border-radius: 10px;
+  border-radius: 0px;
 }
 
 #workspaces button:hover {
   background: #cdd6f4;
   color: #11111b;
-  border-radius: 10px;
+  border-radius: 0px;
 }
 
 #window,
@@ -63,7 +63,7 @@ window#waybar {
 
 #tray {
   border-radius: 10px;
-  margin-right: 10px;
+  margin-left: 10px;
 }
 
 #workspaces {
