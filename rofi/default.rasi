@@ -1,0 +1,84 @@
+@import "shared/fonts.rasi"
+@import "shared/colors.rasi"
+
+* {
+  background-color:   transparent;
+  text-color:         @foreground;
+  margin:     0;
+  padding:    0;
+  spacing:    0;
+}
+
+window {
+  location:   center;
+  width:      640;
+  background-color:   @background;
+}
+
+inputbar {
+  spacing:    8px;
+  padding:    8px;
+  background-color:   @background-alt;
+}
+
+prompt, entry, element-icon, element-text {
+  vertical-align: 0.5;
+}
+
+prompt {
+  text-color: @foreground;
+}
+
+textbox {
+  padding:            8px;
+  background-color:   @background-alt;
+}
+
+listview {
+  padding:    4px 0;
+  lines:      10;
+  columns:    1;
+  fixed-height:   true;
+  dynamic:    false;
+}
+
+element {
+  padding:    8px;
+  spacing:    8px;
+}
+
+element normal normal {
+  text-color: @foreground;
+}
+
+element normal urgent {
+  text-color: @urgent;
+}
+
+element normal active {
+  text-color: @selected;
+}
+
+element alternate active {
+  text-color: @selected;
+}
+
+element selected {
+  text-color: @foreground;
+}
+
+element selected normal, element selected active {
+  background-color:   @selected;
+}
+
+element selected urgent {
+  background-color:   @urgent;
+}
+
+element-icon {
+  size:   0.8em;
+}
+
+element-text {
+  text-color: inherit;
+}
