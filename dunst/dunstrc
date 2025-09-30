@@ -15,10 +15,21 @@
 
     frame_color = "#a6adc8"
     separator_color = frame
+    notification_limit = 20
+    progress_bar = true
+    progress_bar_height = 10
+    progress_bar_frame_width = 0
+    progress_bar_min_width = 125
+    progress_bar_max_width = 250
+    progress_bar_corner_radius = 4
+
+    mouse_left_click = context, close_current
+    mouse_middle_click = do_action, close_current
+    mouse_right_click = close_all
 
     sort = yes
     idle_threshold = 120
-    font = IosevkaTerm Nerd Font 12
+    font = IosevkaTerm Nerd Font 14
     line_height = 0
     markup = full
     alignment = left
@@ -35,7 +46,7 @@
 
     icon_path = /usr/share/icons/Papirus-Dark/24x24/status/:/usr/share/icons/Papirus-Dark/24x24/devices/:/usr/share/icons/Papirus-Dark/24x24/actions/:/usr/share/icons/Papirus-Dark/24x24/animations/:/usr/share/icons/Papirus-Dark/24x24/apps/:/usr/share/icons/Papirus-Dark/24x24/categories/:/usr/share/icons/Papirus-Dark/24x24/emblems/:/usr/share/icons/Papirus-Dark/24x16/emotes/:/usr/share/icons/Papirus-Dark/16x16/devices/mimetypes:/usr/share/icons/Papirus-Dark/16x16/panel/:/usr/share/icons/Papirus-Dark/16x16/places/
 
-    dmenu = /usr/bin/wofi -p dunst:
+    dmenu = /usr/bin/rofi -config notification -dmenu -p dunst:
     browser = /usr/bin/firefox --new-tab
 
     title = Dunst
@@ -44,15 +55,20 @@
     corner_radius = 10
     timeout = 2
 
+# TokyoNight colors for dunst
+# For more configuration options see https://github.com/dunst-project/dunst/blob/master/dunstrc
+
 [urgency_low]
-    background = "#1e1e2e"
-    foreground = "#CDD6F4"
+    background = "#16161e"
+    foreground = "#c0caf5"
+    frame_color = "#c0caf5"
 
 [urgency_normal]
-    background = "#1e1e2e"
-    foreground = "#CDD6F4"
+    background = "#1a1b26"
+    foreground = "#c0caf5"
+    frame_color = "#c0caf5"
 
 [urgency_critical]
-    background = "#1e1e2e"
-    foreground = "#CDD6F4"
-    frame_color = "#FAB387"
+    background = "#292e42"
+    foreground = "#db4b4b"
+    frame_color = "#db4b4b"
