@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Directory containing wallpapers
-WALLPAPER_DIR="$HOME/wallpapers"
+WALLPAPER_DIR="$HOME/wallpapers/chillop/"
 
 # Choose a random wallpaper (only image files)
 WALLPAPER=$(find "$WALLPAPER_DIR" -type f \( -iname '*.jpg' -o -iname '*.png' -o -iname '*.jpeg' \) | shuf -n 1)
